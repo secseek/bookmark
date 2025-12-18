@@ -25,9 +25,12 @@ jobs:
           mkdir -p out
           cp secseek.bookmarks.html out/index.html
           # copy CSS and inject into the generated index (do not modify source file)
-          cp assets/style.css out/style.css || true
-          # Wrap the bookmark HTML with basic html/head/body and include stylesheet
-          awk 'NR==1{print "<html><head><meta charset=\"utf-8\">\n<link rel=\"stylesheet\" href=\"/bookmark/style.css\">\n</head><body><div class=\"wrap\">"} {print} END{print "</div></body></html>"}' out/index.html > out/_tmp_index.html && mv out/_tmp_index.html out/index.html
+            # Inject inline stylesheet into generated index (no source modification)
+            printf '%s\n' "<html><head><meta charset=\"utf-8\">" > out/_head.html
+            printf '%s\n' "<style>" >> out/_head.html
+            cat assets/style.css >> out/_head.html || true
+            printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
+            cat out/_head.html out/index.html > out/_tmp_index.html && mv out/_tmp_index.html out/index.html
           # Prevent Jekyll processing
           touch out/.nojekyll
 
