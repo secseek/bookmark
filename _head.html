@@ -1,33 +1,82 @@
 <html><head><meta charset="utf-8">
 <style>
 /* Simple readable styles for bookmarks export */
-:root{
-  --bg:#0f1720;
-  --card:#0b1220;
-  --muted:#94a3b8;
-  --accent:#7dd3fc;
-  --link:#93c5fd;
-  --max-width:1050px;
+:root {
+    --bg: #0f1720;
+    --card: #0b1220;
+    --muted: #94a3b8;
+    --accent: #7dd3fc;
+    --link: #93c5fd;
+    --max-width: 1050px;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Roboto, 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-  background:linear-gradient(180deg,var(--bg),#071021);
-  color:#e6eef8;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:32px 16px;
-  display:flex;
-  justify-content:center;
+
+* {
+    box-sizing: border-box
 }
-.wrap{max-width:var(--max-width);width:100%}
-h1{font-size:1.6rem;margin:0 0 18px 0;color:var(--accent)}
-.meta{color:var(--muted);margin-bottom:18px}
-dl{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;}
-dt{margin:0;padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);}
-dt a{color:var(--link);text-decoration:none;font-weight:600}
-dd{margin:6px 0 12px 0;color:var(--muted);padding-left:6px}
-@media (max-width:700px){body{padding:18px} .wrap{padding:0}}
-</style></head><body><div class="wrap">
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Roboto, 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    background: linear-gradient(180deg, var(--bg), #071021);
+    color: #e6eef8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 32px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrap {
+    max-width: var(--max-width);
+    width: 100%
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin: 0 0 18px 0;
+    color: var(--accent)
+}
+
+.meta {
+    color: var(--muted);
+    margin-bottom: 18px
+}
+
+dl {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    padding: 18px;
+    border-radius: 12px;
+}
+
+dt {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+dt a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600
+}
+
+dd {
+    margin: 6px 0 12px 0;
+    color: var(--muted);
+    padding-left: 6px
+}
+
+@media (max-width:700px) {
+    body {
+        padding: 18px
+    }
+
+    .wrap {
+        padding: 0
+    }
+}</style></head><body><div class="wrap">
