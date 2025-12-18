@@ -4,7 +4,8 @@
     --card: #0b1220;
     --muted: #94a3b8;
     --accent: #7dd3fc;
-    --link: #93c5fd;
+    /* Muted link color to reduce visual harshness */
+    --link: #5fb0d6;
     --max-width: 1050px;
 }
 
@@ -97,6 +98,13 @@ dt a {
     color: var(--link);
     text-decoration: none;
     font-weight: 600
+}
+
+dt a:hover,
+dt a:focus {
+    color: #9ee7ff;
+    text-decoration: underline;
+    outline: none;
 }
 
 dd {
