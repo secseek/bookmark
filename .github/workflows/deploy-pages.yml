@@ -26,6 +26,7 @@ jobs:
           cp secseek.bookmarks.html out/index.html
           # Build head (inline CSS)
           printf '%s\n' "<html><head><meta charset=\"utf-8\">" > out/_head.html
+          printf '%s\n' "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" >> out/_head.html
           printf '%s\n' "<style>" >> out/_head.html
           cat assets/style.css >> out/_head.html || true
           printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
