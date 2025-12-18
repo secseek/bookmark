@@ -19,15 +19,13 @@
         const title = a.textContent.trim();
         const card = document.createElement('div');
         card.className = 'ogp-card';
+        // Simple flat structure: title, description, image (all full-width)
         card.innerHTML = `
-      <a class="ogp-link" href="${url}" target="_blank" rel="noopener noreferrer">
-        <div class="ogp-inner">
-          <div class="ogp-body">
-            <h3 class="ogp-title">${escapeHtml(title)}</h3>
-            <p class="ogp-desc">Loading preview…</p>
-          </div>
-        </div>
-      </a>`;
+            <a class="ogp-link" href="${url}" target="_blank" rel="noopener noreferrer">
+                <h3 class="ogp-title">${escapeHtml(title)}</h3>
+                <p class="ogp-desc">Loading preview…</p>
+                <div class="ogp-thumb"><img src="" alt="" style="display:none"/></div>
+            </a>`;
         return card;
     }
 
@@ -51,15 +49,24 @@
         for (const task of tasks) {
             const { a, card } = task;
             const meta = await fetchMeta(a.href);
-            const inner = card.querySelector('.ogp-inner');
+            const link = card.querySelector('.ogp-link');
+            const titleEl = link.querySelector('.ogp-title');
+            const descEl = link.querySelector('.ogp-desc');
+            const imgEl = link.querySelector('.ogp-thumb img');
             if (meta) {
-                const imgHtml = meta.ogImage ? `<div class="ogp-thumb"><img src="${meta.ogImage}" alt=""/></div>` : '';
                 const title = meta.ogTitle || a.textContent.trim();
                 const desc = meta.ogDesc || '';
-                inner.innerHTML = `${imgHtml}<div class="ogp-body"><h3 class="ogp-title">${escapeHtml(title)}</h3><p class="ogp-desc">${escapeHtml(desc)}</p></div>`;
+                titleEl.textContent = title;
+                descEl.textContent = desc;
+                if (meta.ogImage && imgEl) {
+                    imgEl.src = meta.ogImage;
+                    imgEl.style.display = 'block';
+                } else if (imgEl) {
+                    imgEl.style.display = 'none';
+                }
             } else {
-                const p = inner.querySelector('.ogp-desc');
-                if (p) p.textContent = '';
+                if (descEl) descEl.textContent = '';
+                if (imgEl) imgEl.style.display = 'none';
             }
         }
     }
