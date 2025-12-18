@@ -17,6 +17,11 @@ body {
     height: 100%
 }
 
+/* Prevent horizontal scrolling from long tokens */
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Roboto, 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
@@ -32,6 +37,25 @@ body {
 .wrap {
     max-width: var(--max-width);
     width: 100%
+}
+
+.wrap { margin: 0 auto; }
+
+/* Break long words/URLs to avoid horizontal overflow */
+dl, dt, dd, .wrap, body {
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+}
+
+dt a, dd, a {
+    word-break: break-word;
+    white-space: normal;
+}
+
+img, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 h1 {
