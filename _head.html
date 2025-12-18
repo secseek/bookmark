@@ -1,4 +1,5 @@
 <html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 /* Simple readable styles for bookmarks export */
 :root {
@@ -13,7 +14,6 @@
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Roboto, 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
     background: linear-gradient(180deg, var(--bg), #071021);
     color: #e6eef8;
     -webkit-font-smoothing: antialiased;
@@ -25,6 +25,11 @@ body {
 
 * {
     box-sizing: border-box;
+}
+
+/* Base font sizing for readable mobile text */
+html {
+    font-size: 16px;
 }
 
 .wrap {
@@ -105,7 +110,7 @@ dd {
 
 @media (max-width:700px) {
     body {
-        padding: 18px
+        padding: 18px;
     }
 
     .wrap {
