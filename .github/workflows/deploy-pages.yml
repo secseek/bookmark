@@ -24,13 +24,17 @@ jobs:
         run: |
           mkdir -p out
           cp secseek.bookmarks.html out/index.html
-          # copy CSS and inject into the generated index (do not modify source file)
-            # Inject inline stylesheet into generated index (no source modification)
-            printf '%s\n' "<html><head><meta charset=\"utf-8\">" > out/_head.html
-            printf '%s\n' "<style>" >> out/_head.html
-            cat assets/style.css >> out/_head.html || true
-            printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
-            cat out/_head.html out/index.html > out/_tmp_index.html && mv out/_tmp_index.html out/index.html
+          # Build head (inline CSS)
+          printf '%s\n' "<html><head><meta charset=\"utf-8\">" > out/_head.html
+          printf '%s\n' "<style>" >> out/_head.html
+          cat assets/style.css >> out/_head.html || true
+          printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
+          # Build footer (inject client-side OGP loader script + closing tags)
+          printf '%s\n' "<script>" > out/_footer.html
+          cat assets/ogp-loader.js >> out/_footer.html || true
+          printf '%s\n' "</script></div></body></html>" >> out/_footer.html
+          # Concatenate: head + original exported HTML + footer
+          cat out/_head.html out/index.html out/_footer.html > out/_tmp_index.html && mv out/_tmp_index.html out/index.html
           # Prevent Jekyll processing
           touch out/.nojekyll
 
