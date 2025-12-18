@@ -92,9 +92,13 @@ dt a:focus {
 }
 
 dd {
-    margin: 6px 0 12px 0;
+    margin: 6px 0 20px 0;
+    /* 増やして下のDTと視覚的に分離 */
     color: var(--muted);
-    padding-left: 6px
+    padding: 8px 6px;
+    /* 少し内側に余白を入れて読みやすく */
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.01);
 }
 
 @media (max-width:700px) {
