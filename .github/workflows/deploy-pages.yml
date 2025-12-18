@@ -18,6 +18,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Trigger rebuild: updated at 2025-12-18
+
       - name: Prepare Pages artifact
         run: |
           mkdir -p out
