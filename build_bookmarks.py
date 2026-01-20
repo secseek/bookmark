@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 def build():
-    # 出力ディレクトリの作成（これがあるため Actions 側での mkdir は不要になります）
+    # 出力ディレクトリの作成
     os.makedirs("out", exist_ok=True)
 
     try:
@@ -25,8 +25,6 @@ def build():
     for match in pattern.finditer(content):
         d = match.groupdict()
         d['comment'] = d['comment'].strip() if d['comment'] else ""
-        # タグをリスト化
-        d['tag_list'] = d['tags'].split(',') if d.get('tags') else []
         items.append(d)
 
     # ブックマークアイテムHTMLの生成
@@ -66,7 +64,7 @@ def build():
     json_ld = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "secseekのブックマーク集",
+        "name": "secseekの技術ブックマーク",
         "description": "ネットワークスペシャリスト・データベーススペシャリストによる技術リンク集",
         "author": {
             "@type": "Person",
@@ -89,7 +87,7 @@ def build():
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>secseekのブックマーク集</title>
+  <title>secseekの技術ブックマーク</title>
   <meta name="description" content="secseekによる技術ブックマーク集（ネットワーク・データベース・Web開発）">
   <meta name="author" content="secseek">
   <script type="application/ld+json">
@@ -102,7 +100,7 @@ def build():
 <body>
 <div class="wrap">
 <header>
-  <h1>secseekのブックマーク集</h1>
+  <h1>secseekの技術ブックマーク</h1>
 </header>
 <main>
 {"".join(html_items)}
@@ -111,11 +109,10 @@ def build():
 </body>
 </html>"""
 
-    # HTMLドキュメントをファイルに保存
     with open("out/index.html", "w", encoding="utf-8") as f:
         f.write(html_document)
 
-    # sitemap.xml の生成 (自ドメインのルートのみを記述)
+    # sitemap.xml の生成 (自分のサイトのURLのみ)
     base_url = "https://secseek.github.io/bookmark/"
     current_date = datetime.now().strftime("%Y-%m-%d")
 
@@ -132,7 +129,6 @@ def build():
     with open("out/sitemap.xml", "w", encoding="utf-8") as f:
         f.write(sitemap_xml)
 
-    # .nojekyll ファイルの作成
     with open("out/.nojekyll", "w", encoding="utf-8") as f:
         f.write("")
 
