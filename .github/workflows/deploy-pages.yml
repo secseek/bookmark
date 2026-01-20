@@ -30,14 +30,16 @@ jobs:
           printf '%s\n' "<!DOCTYPE html><html lang=\"ja\"><head>" > out/_head.html
           printf '%s\n' "  <meta charset=\"utf-8\">" >> out/_head.html
           printf '%s\n' "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" >> out/_head.html
+          printf '%s\n' "  <title>secseekのブックマーク集</title>" >> out/_head.html
           # AI向けのメタデータ（このページが何であるかを明示）
           printf '%s\n' "  <meta name=\"description\" content=\"secseekによる技術ブックマーク集（ネットワーク・データベース・Web開発）\">" >> out/_head.html
+          printf '%s\n' "  <meta name=\"author\" content=\"secseek\">" >> out/_head.html
           printf '%s\n' "<style>" >> out/_head.html
           cat assets/style.css >> out/_head.html
-          printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
+          printf '%s\n' "</style></head><body><div class=\"wrap\"><main>" >> out/_head.html
 
           # フッターの作成
-          printf '%s\n' "</div></body></html>" > out/_footer.html
+          printf '%s\n' "</main></div></body></html>" > out/_footer.html
 
           # 結合
           cat out/_head.html out/index_content.html out/_footer.html > out/index.html
