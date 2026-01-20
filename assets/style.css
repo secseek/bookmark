@@ -168,3 +168,17 @@ dd {
 .ogp-link:focus .ogp-title {
     color: #e6f9ff;
 }
+
+.bookmark-item {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.my-comment {
+    font-size: 0.9rem;
+    color: #555;
+    border-left: 3px solid #ccc;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}

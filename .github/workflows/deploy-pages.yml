@@ -23,28 +23,24 @@ jobs:
       - name: Prepare Pages artifact
         run: |
           mkdir -p out
-          cp secseek.bookmarks.html out/index.html
-          # Build head (inline CSS)
-          # Emit HTML5 doctype and head (standards mode)
-          printf '%s\n' "<!DOCTYPE html>" > out/_head.html
-          printf '%s\n' "<html lang=\"ja\">" >> out/_head.html
-          printf '%s\n' "<head>" >> out/_head.html
+          # Pythonスクリプトを実行してコンテンツを生成
+          python3 build_bookmarks.py
+          
+          # ヘッダーの作成
+          printf '%s\n' "<!DOCTYPE html><html lang=\"ja\"><head>" > out/_head.html
           printf '%s\n' "  <meta charset=\"utf-8\">" >> out/_head.html
           printf '%s\n' "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" >> out/_head.html
+          # AI向けのメタデータ（このページが何であるかを明示）
+          printf '%s\n' "  <meta name=\"description\" content=\"secseekによる技術ブックマーク集（ネットワーク・データベース・Web開発）\">" >> out/_head.html
           printf '%s\n' "<style>" >> out/_head.html
           cat assets/style.css >> out/_head.html || true
-          printf '%s\n' "</style>" >> out/_head.html
-          printf '%s\n' "</head><body><div class=\"wrap\">" >> out/_head.html
-          # Extract body content from original export: strip legacy DOCTYPE/headers and start from the <DL> element
-          awk 'BEGIN{found=0} /<DL/ {found=1} found{print}' secseek.bookmarks.html > out/index.html
-
-          # Build footer (inject client-side OGP loader script + closing tags)
-          printf '%s\n' "<script>" > out/_footer.html
-          cat assets/ogp-loader.js >> out/_footer.html || true
-          printf '%s\n' "</script></div></body></html>" >> out/_footer.html
-          # Concatenate: head + sanitized exported HTML + footer
-          cat out/_head.html out/index.html out/_footer.html > out/_tmp_index.html && mv out/_tmp_index.html out/index.html
-          # Prevent Jekyll processing
+          printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
+          
+          # フッターの作成（JSのOGPローダーは削除し、閉じタグのみに）
+          printf '%s\n' "</div></body></html>" > out/_footer.html
+          
+          # 結合
+          cat out/_head.html out/index_content.html out/_footer.html > out/index.html
           touch out/.nojekyll
 
       - name: Deploy to GitHub Pages (push to gh-pages)
