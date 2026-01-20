@@ -21,6 +21,8 @@ body {
     line-height: 1.8;
     letter-spacing: 0.02em;
     font-family: initial;
+    width: 100%;
+    overflow-x: hidden;
 
     /* Fallback for browsers that don't support 'initial' */
     @supports not (font-family: initial) {
@@ -39,6 +41,8 @@ html {
 
 .wrap {
     margin: 0 auto;
+    width: 100%;
+    max-width: var(--max-width);
 }
 
 /* Break long words/URLs to avoid horizontal overflow */
@@ -56,6 +60,7 @@ dd,
 a {
     word-break: break-word;
     white-space: normal;
+    overflow-wrap: break-word;
 }
 
 a {
@@ -129,12 +134,13 @@ dd {
     }
 
     .wrap {
-        padding: 0
+        padding: 0;
     }
 }
 
 .bookmark-item {
-    margin-bottom: 2.5rem;
+    width: 100%;
+    margin: 0 auto 2.5rem auto;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding-bottom: 1.5rem;
 }
@@ -147,10 +153,7 @@ dd {
     background: rgba(100, 116, 139, 0.1);
     padding: 0.75rem;
     border-radius: 4px;
-}
-
-padding: 1rem;
-margin-top: 0.75rem;
-background: rgba(125, 211, 252, 0.05);
-border-radius: 4px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
 }
