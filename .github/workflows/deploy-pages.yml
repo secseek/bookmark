@@ -25,7 +25,7 @@ jobs:
           mkdir -p out
           # Pythonスクリプトを実行してコンテンツを生成
           python3 build_bookmarks.py
-          
+
           # ヘッダーの作成
           printf '%s\n' "<!DOCTYPE html><html lang=\"ja\"><head>" > out/_head.html
           printf '%s\n' "  <meta charset=\"utf-8\">" >> out/_head.html
@@ -33,12 +33,12 @@ jobs:
           # AI向けのメタデータ（このページが何であるかを明示）
           printf '%s\n' "  <meta name=\"description\" content=\"secseekによる技術ブックマーク集（ネットワーク・データベース・Web開発）\">" >> out/_head.html
           printf '%s\n' "<style>" >> out/_head.html
-          cat assets/style.css >> out/_head.html || true
+          cat assets/style.css >> out/_head.html
           printf '%s\n' "</style></head><body><div class=\"wrap\">" >> out/_head.html
-          
-          # フッターの作成（JSのOGPローダーは削除し、閉じタグのみに）
+
+          # フッターの作成
           printf '%s\n' "</div></body></html>" > out/_footer.html
-          
+
           # 結合
           cat out/_head.html out/index_content.html out/_footer.html > out/index.html
           touch out/.nojekyll

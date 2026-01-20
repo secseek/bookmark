@@ -115,60 +115,6 @@ dd {
     }
 }
 
-/* OGP card styles for client-side injected previews (vertical stack: title → desc → full-width image) */
-.ogp-card {
-    margin: 12px 0;
-    background: linear-gradient(180deg, rgba(10, 16, 24, 0.9), rgba(12, 18, 28, 0.9));
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-}
-
-.ogp-link {
-    color: var(--link);
-    text-decoration: none;
-    display: block;
-    /* ensure block-level so children stack */
-    padding: 14px;
-}
-
-.ogp-inner {
-    display: block;
-    padding: 14px;
-}
-
-.ogp-title {
-    margin: 0 0 8px 0;
-    color: #cbeefc;
-    font-size: 1.2rem;
-    line-height: 1.2;
-    font-weight: 700;
-}
-
-.ogp-desc {
-    margin: 0 0 12px 0;
-    color: var(--muted);
-    font-size: 1rem;
-}
-
-.ogp-thumb {
-    width: 100%;
-    margin: 0;
-}
-
-.ogp-thumb img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-    border-radius: 6px;
-}
-
-.ogp-link:hover .ogp-title,
-.ogp-link:focus .ogp-title {
-    color: #e6f9ff;
-}
-
 .bookmark-item {
     margin-bottom: 2rem;
     border-bottom: 1px solid #eee;
