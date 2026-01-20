@@ -4,8 +4,8 @@
     --card: #0b1220;
     --muted: #94a3b8;
     --accent: #7dd3fc;
-    /* Muted link color to reduce visual harshness */
-    --link: #5fb0d6;
+    /* Brighter link color for better contrast */
+    --link: #38bdf8;
     --max-width: 1050px;
 }
 
@@ -90,7 +90,7 @@ dt a {
 
 dt a:hover,
 dt a:focus {
-    color: #9ee7ff;
+    color: #bfdbfe;
     text-decoration: underline;
     outline: none;
 }
@@ -123,8 +123,11 @@ dd {
 
 .my-comment {
     font-size: 0.9rem;
-    color: #555;
-    border-left: 3px solid #ccc;
+    color: #cbd5e1;
+    border-left: 3px solid #64748b;
     padding-left: 1rem;
     margin-top: 0.5rem;
+    background: rgba(100, 116, 139, 0.1);
+    padding: 0.75rem;
+    border-radius: 4px;
 }
